@@ -70,9 +70,9 @@ const styles = theme => ({
 class StudentForm extends React.Component {
   constructor(props) {
     super(props);
-    // this.state = {
-    //   firstName: '', lastName: '', email: '', gpa: 0.0, campusId: 0,
-    // };
+    this.state = {
+      firstName: '', lastName: '', email: '', gpa: 0.0, campusId: 0,
+    };
 
     if (props.campuses.length === 0) {
       props.loadCampuses();
@@ -80,8 +80,6 @@ class StudentForm extends React.Component {
 
     if (props.route) {
       props.loadStudent(props.route.match.params.id);
-    } else {
-      props.resetStudent();
     }
 
     this.handleChange = this.handleChange.bind(this);
@@ -92,10 +90,6 @@ class StudentForm extends React.Component {
   componentWillReceiveProps(props) {
     if (props.route) {
       this.setState(props.student);
-    } else {
-      this.setState({
-        firstName: '', lastName: '', email: '', gpa: 0.0, campusId: 0,
-      });
     }
   }
 
